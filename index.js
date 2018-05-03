@@ -17,10 +17,10 @@ class CoverageBase {
      * @return {Promise}     Shell commands to upload coverage
      */
     getUploadCoverageCmd() {
-        return this._uploadCoverage();
+        return this._getUploadCoverageCmd();
     }
 
-    _uploadCoverage() {
+    _getUploadCoverageCmd() {
         return Promise.reject('Not implemented');
     }
 
