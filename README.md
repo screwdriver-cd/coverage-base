@@ -10,14 +10,25 @@ npm install screwdriver-screwdriver-coverage-base
 ```
 
 ## Interface
-This is a interface for uploading code coverage results from a Screwdriver build to a code coverage server.
+This is an interface for uploading code coverage results from a Screwdriver build to a code coverage server.
+
+### getAccessToken
+##### Required Parameters
+| Parameter        | Type  |  Description |
+| :-------------   | :---- | :-------------|
+| buildCredentials        | Object | Information stored in the build JWT token |
+
+##### Expected Outcome
+The `getAccessToken` function should resolve a Promise with an access token that build can use to talk to the code coverage server.
 
 ### getUploadCoverageCmd
-The `getUploadCoverageCmd` function should resolves a Promise with shell commands to upload code coverage results.
+##### Expected Outcome
+The `getUploadCoverageCmd` function should resolve a Promise with a string of shell commands to upload code coverage results.
 
 ## Extending
 To extend the base class, the functions to override are:
 1. `_getUploadCoverageCmd`
+2. `_getAccessToken`
 
 ## Testing
 
