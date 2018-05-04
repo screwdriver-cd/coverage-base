@@ -9,6 +9,27 @@
 npm install screwdriver-screwdriver-coverage-base
 ```
 
+## Interface
+This is an interface for uploading code coverage results from a Screwdriver build to a code coverage server.
+
+### getAccessToken
+##### Required Parameters
+| Parameter        | Type  |  Description |
+| :-------------   | :---- | :-------------|
+| buildCredentials        | Object | Information stored in the build JWT token |
+
+##### Expected Outcome
+The `getAccessToken` function should resolve a Promise with an access token that build can use to talk to the code coverage server.
+
+### getUploadCoverageCmd
+##### Expected Outcome
+The `getUploadCoverageCmd` function should resolve a Promise with a string of shell commands to upload code coverage results.
+
+## Extending
+To extend the base class, the functions to override are:
+1. `_getUploadCoverageCmd`
+2. `_getAccessToken`
+
 ## Testing
 
 ```bash
@@ -25,7 +46,7 @@ Code licensed under the BSD 3-Clause license. See LICENSE file for terms.
 [license-image]: https://img.shields.io/npm/l/screwdriver-screwdriver-coverage-base.svg
 [issues-image]: https://img.shields.io/github/issues/screwdriver-cd/screwdriver-coverage-base.svg
 [issues-url]: https://github.com/screwdriver-cd/screwdriver-coverage-base/issues
-[status-image]: https://cd.screwdriver.cd/pipelines/pipelineid/badge
-[status-url]: https://cd.screwdriver.cd/pipelines/pipelineid
+[status-image]: https://cd.screwdriver.cd/pipelines/705/badge
+[status-url]: https://cd.screwdriver.cd/pipelines/705
 [daviddm-image]: https://david-dm.org/screwdriver-cd/screwdriver-coverage-base.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/screwdriver-cd/screwdriver-coverage-base
