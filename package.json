@@ -1,6 +1,6 @@
 {
-  "name": "screwdriver-screwdriver-coverage-base",
-  "version": "0.0.1",
+  "name": "screwdriver-coverage-base",
+  "version": "1.0.0",
   "description": "Base class defining the interface for coverage upload implementations",
   "main": "index.js",
   "scripts": {
