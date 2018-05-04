@@ -6,7 +6,7 @@
 ## Usage
 
 ```bash
-npm install screwdriver-screwdriver-coverage-base
+npm install screwdriver-coverage-base
 ```
 
 ## Interface
@@ -43,10 +43,10 @@ See the [coverage-bookend](https://github.com/screwdriver-cd/coverage-bookend)
 
 Code licensed under the BSD 3-Clause license. See LICENSE file for terms.
 
-[npm-image]: https://img.shields.io/npm/v/screwdriver-screwdriver-coverage-base.svg
-[npm-url]: https://npmjs.org/package/screwdriver-screwdriver-coverage-base
-[downloads-image]: https://img.shields.io/npm/dt/screwdriver-screwdriver-coverage-base.svg
-[license-image]: https://img.shields.io/npm/l/screwdriver-screwdriver-coverage-base.svg
+[npm-image]: https://img.shields.io/npm/v/screwdriver-coverage-base.svg
+[npm-url]: https://npmjs.org/package/screwdriver-coverage-base
+[downloads-image]: https://img.shields.io/npm/dt/screwdriver-coverage-base.svg
+[license-image]: https://img.shields.io/npm/l/screwdriver-coverage-base.svg
 [issues-image]: https://img.shields.io/github/issues/screwdriver-cd/screwdriver-coverage-base.svg
 [issues-url]: https://github.com/screwdriver-cd/screwdriver-coverage-base/issues
 [status-image]: https://cd.screwdriver.cd/pipelines/705/badge
