@@ -36,6 +36,9 @@ To extend the base class, the functions to override are:
 npm test
 ```
 
+## Related links
+See the [coverage-bookend](https://github.com/screwdriver-cd/coverage-bookend)
+
 ## License
 
 Code licensed under the BSD 3-Clause license. See LICENSE file for terms.
