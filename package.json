@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:screwdriver-cd/screwdriver-coverage-base.git"
+    "url": "git@github.com:screwdriver-cd/coverage-base.git"
   },
-  "homepage": "https://github.com/screwdriver-cd/screwdriver-coverage-base",
+  "homepage": "https://github.com/screwdriver-cd/coverage-base",
   "bugs": "https://github.com/screwdriver-cd/screwdriver/issues",
   "keywords": [
     "screwdriver",
