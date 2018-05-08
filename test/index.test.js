@@ -20,8 +20,8 @@ describe('index test', () => {
         assert.instanceOf(instance, CoverageBase);
     });
 
-    it('should catch an error for getUploadCoverageCmd', () => {
-        instance.getUploadCoverageCmd({})
+    it('should catch an error for getAccessToken', () => {
+        instance.getAccessToken({})
             .then(() => {
                 throw new Error('Should not get here');
             }, (err) => {
@@ -30,8 +30,18 @@ describe('index test', () => {
             });
     });
 
-    it('should catch an error for getAccessToken', () => {
-        instance.getAccessToken({})
+    it('should catch an error for getLinks', () => {
+        instance.getLinks({})
+            .then(() => {
+                throw new Error('Should not get here');
+            }, (err) => {
+                assert.isOk(err, 'Error should be returned');
+                assert.equal(err.message, 'Not implemented');
+            });
+    });
+
+    it('should catch an error for getUploadCoverageCmd', () => {
+        instance.getUploadCoverageCmd({})
             .then(() => {
                 throw new Error('Should not get here');
             }, (err) => {

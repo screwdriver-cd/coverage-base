@@ -21,14 +21,25 @@ This is an interface for uploading code coverage results from a Screwdriver buil
 ##### Expected Outcome
 The `getAccessToken` function should resolve a Promise with an access token that build can use to talk to the code coverage server.
 
+### getLinks
+##### Required Parameters
+| Parameter        | Type  |  Description |
+| :-------------   | :---- | :-------------|
+| jobId        | String | Coverage job ID |
+
+##### Expected Outcome
+The `getLinks` function should resolve a Promise with an object with links to the coverage badge and project.
+
 ### getUploadCoverageCmd
 ##### Expected Outcome
 The `getUploadCoverageCmd` function should resolve a Promise with a string of shell commands to upload code coverage results.
 
 ## Extending
 To extend the base class, the functions to override are:
+1. `_getAccessToken`
+1. `_getLinks`
 1. `_getUploadCoverageCmd`
-2. `_getAccessToken`
+
 
 ## Testing
 
