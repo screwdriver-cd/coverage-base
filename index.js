@@ -28,11 +28,13 @@ class CoverageBase {
     /**
      * Return coverage links
      * @method getLinks
-     * @param   {Object}  jobId    Coverage job ID
-     * @return  {Promise}          An object with links to the coverage
+     * @param   {Object}  config
+     * @param   {String}  config.buildId    Screwdriver build ID
+     * @param   {String}  config.jobId      Screwdriver job ID
+     * @return  {Promise}                   An object with links to the coverage
      */
-    getLinks(jobId) {
-        return this._getLinks(jobId);
+    getLinks(config) {
+        return this._getLinks(config);
     }
 
     _getLinks() {

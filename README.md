@@ -15,7 +15,7 @@ This is an interface for uploading code coverage results from a Screwdriver buil
 ### getAccessToken
 ##### Required Parameters
 | Parameter        | Type  |  Description |
-| :-------------   | :---- | :-------------|
+| :--------------- | :---- | :----------- |
 | buildCredentials        | Object | Information stored in the build JWT token |
 
 ##### Expected Outcome
@@ -23,9 +23,11 @@ The `getAccessToken` function should resolve a Promise with an access token that
 
 ### getLinks
 ##### Required Parameters
-| Parameter        | Type  |  Description |
-| :-------------   | :---- | :-------------|
-| jobId        | String | Coverage job ID |
+| Parameter        | Type   |  Description |
+| :--------------- | :----- | :----------- |
+| config           | Object |              |
+| config.buildId   | String | The unique ID for a build |
+| config.jobId     | String | The unique ID for a job |
 
 ##### Expected Outcome
 The `getLinks` function should resolve a Promise with an object with links to the coverage badge and project.
