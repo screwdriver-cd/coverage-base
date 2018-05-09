@@ -30,8 +30,8 @@ describe('index test', () => {
             });
     });
 
-    it('should catch an error for getLinks', () => {
-        instance.getLinks({})
+    it('should catch an error for getInfo', () => {
+        instance.getInfo({})
             .then(() => {
                 throw new Error('Should not get here');
             }, (err) => {

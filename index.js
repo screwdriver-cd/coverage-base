@@ -26,18 +26,20 @@ class CoverageBase {
     }
 
     /**
-     * Return coverage links
-     * @method getLinks
+     * Return coverage metadata, such as links to the project and coverage percentage
+     * @method getInfo
      * @param   {Object}  config
      * @param   {String}  config.buildId    Screwdriver build ID
      * @param   {String}  config.jobId      Screwdriver job ID
-     * @return  {Promise}                   An object with links to the coverage
+     * @param   {String}  config.startTime  Time the job started
+     * @param   {String}  config.endTime    Time the job ended
+     * @return  {Promise}                   An object with coverage metadata
      */
-    getLinks(config) {
-        return this._getLinks(config);
+    getInfo(config) {
+        return this._getInfo(config);
     }
 
-    _getLinks() {
+    _getInfo() {
         return Promise.reject('Not implemented');
     }
 
