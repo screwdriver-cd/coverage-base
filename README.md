@@ -16,21 +16,23 @@ This is an interface for uploading code coverage results from a Screwdriver buil
 ##### Required Parameters
 | Parameter        | Type  |  Description |
 | :--------------- | :---- | :----------- |
-| buildCredentials        | Object | Information stored in the build JWT token |
+| buildCredentials | Object | Information stored in the build JWT token |
 
 ##### Expected Outcome
 The `getAccessToken` function should resolve a Promise with an access token that build can use to talk to the code coverage server.
 
-### getLinks
+### getInfo
 ##### Required Parameters
 | Parameter        | Type   |  Description |
 | :--------------- | :----- | :----------- |
 | config           | Object |              |
 | config.buildId   | String | The unique ID for a build |
 | config.jobId     | String | The unique ID for a job |
+| config.startTime | String | The job start time |
+| config.endTime   | String | The job end time |
 
 ##### Expected Outcome
-The `getLinks` function should resolve a Promise with an object with links to the coverage badge and project.
+The `getInfo` function should resolve a Promise with an object with metadata about the project coverage.
 
 ### getUploadCoverageCmd
 ##### Expected Outcome
@@ -39,7 +41,7 @@ The `getUploadCoverageCmd` function should resolve a Promise with a string of sh
 ## Extending
 To extend the base class, the functions to override are:
 1. `_getAccessToken`
-1. `_getLinks`
+1. `_getInfo`
 1. `_getUploadCoverageCmd`
 
 
