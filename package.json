@@ -33,11 +33,9 @@
     "chai": "^3.5.0",
     "eslint": "^4.3.0",
     "eslint-config-screwdriver": "^3.0.0",
-    "jenkins-mocha": "^4.0.0"
+    "jenkins-mocha": "^6.0.0"
   },
-  "dependencies": {
-    "sinon": "^5.0.3"
-  },
+  "dependencies": {},
   "release": {
     "debug": false,
     "verifyConditions": {
