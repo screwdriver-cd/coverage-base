@@ -57,7 +57,7 @@ describe('index test', () => {
     describe('isCoverageEnabled test', () => {
         it('should return true if enabled at cluster level, and buildConfig not defined.', () => {
             const clusterConfig = {
-                enabled: 'true'
+                default: 'true'
             };
             const buildConfig = {
                 environment: {}
@@ -70,7 +70,7 @@ describe('index test', () => {
 
         it('should return false if enabled at cluster level, and disabled at buildConfig.', () => {
             const clusterConfig = {
-                enabled: 'true'
+                default: 'true'
             };
             const buildConfig = {
                 environment: {
@@ -85,7 +85,7 @@ describe('index test', () => {
 
         it('should return false if disabled at cluster level, and buildConfig not defined.', () => {
             const clusterConfig = {
-                enabled: 'false'
+                default: 'false'
             };
             const buildConfig = {
                 environment: {}
@@ -98,7 +98,7 @@ describe('index test', () => {
 
         it('should return true if disabled at cluster level, and enabled at build config.', () => {
             const clusterConfig = {
-                enabled: 'false'
+                default: 'false'
             };
             const buildConfig = {
                 environment: {

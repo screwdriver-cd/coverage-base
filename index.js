@@ -68,17 +68,19 @@ class CoverageBase {
     /**
      * Verify to run coverage plugin or not
      * @method isCoverageEnabled
-     * @param   {Object}  clusterConfig  coverage plugin setting at cluster level.
+     * @param   {Object}  clusterConfig  default coverage plugin setting at cluster level.
      * @param   {Object}  buildConfig.environment.COVERAGE_PLUGIN_ENABLED coverage plugin setting in each builds.
      * @return {Boolean}
      */
     isCoverageEnabled(clusterConfig, buildConfig) {
-        if (buildConfig.environment === undefined ||
-            buildConfig.environment.COVERAGE_PLUGIN_ENABLED === undefined) {
-            return clusterConfig.enabled;
+        // if user has the configuration, use it
+        if (buildConfig.environment &&
+            buildConfig.environment.COVERAGE_PLUGIN_ENABLED) {
+            return buildConfig.environment.COVERAGE_PLUGIN_ENABLED;
         }
 
-        return buildConfig.environment.COVERAGE_PLUGIN_ENABLED;
+        // if not, use cluster wide default
+        return clusterConfig.default;
     }
 }
 
