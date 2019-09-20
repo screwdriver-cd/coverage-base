@@ -41,12 +41,74 @@ describe('index test', () => {
     });
 
     it('should catch an error for getUploadCoverageCmd', () => {
-        instance.getUploadCoverageCmd({})
+        const config = {
+            build: {}
+        };
+
+        instance.getUploadCoverageCmd(config)
             .then(() => {
                 throw new Error('Should not get here');
             }, (err) => {
                 assert.isOk(err, 'Error should be returned');
                 assert.equal(err.message, 'Not implemented');
             });
+    });
+
+    describe('isCoverageEnabled test', () => {
+        it('should return true if enabled at cluster level, and buildConfig not defined.', () => {
+            const clusterConfig = {
+                enabled: 'true'
+            };
+            const buildConfig = {
+                environment: {}
+            };
+
+            assert.equal('true',
+                instance.isCoverageEnabled(clusterConfig, buildConfig)
+            );
+        });
+
+        it('should return false if enabled at cluster level, and disabled at buildConfig.', () => {
+            const clusterConfig = {
+                enabled: 'true'
+            };
+            const buildConfig = {
+                environment: {
+                    COVERAGE_PLUGIN_ENABLED: 'false'
+                }
+            };
+
+            assert.equal('false',
+                instance.isCoverageEnabled(clusterConfig, buildConfig)
+            );
+        });
+
+        it('should return false if disabled at cluster level, and buildConfig not defined.', () => {
+            const clusterConfig = {
+                enabled: 'false'
+            };
+            const buildConfig = {
+                environment: {}
+            };
+
+            assert.equal('false',
+                instance.isCoverageEnabled(clusterConfig, buildConfig)
+            );
+        });
+
+        it('should return true if disabled at cluster level, and enabled at build config.', () => {
+            const clusterConfig = {
+                enabled: 'false'
+            };
+            const buildConfig = {
+                environment: {
+                    COVERAGE_PLUGIN_ENABLED: 'true'
+                }
+            };
+
+            assert.equal('true',
+                instance.isCoverageEnabled(clusterConfig, buildConfig)
+            );
+        });
     });
 });

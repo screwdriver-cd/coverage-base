@@ -46,14 +46,39 @@ class CoverageBase {
     /**
      * Get shell command to upload coverage to server
      * @method getUploadCoverageCmd
-     * @return {Promise}     Shell commands to upload coverage
+     * @param   {Object}  config
+     * @param   {String}  config.build   build configuration
+     * @return {Promise}  Shell commands to upload coverage
      */
-    getUploadCoverageCmd() {
+    getUploadCoverageCmd(config) {
+        if (this.isCoverageEnabled(this.config, config.build) === 'false') {
+            const skipMessage = 'Coverage feature is skipped. ' +
+                'Set COVERAGE_PLUGIN_ENABLED environment true, if you want to get coverages.';
+
+            return Promise.resolve(`echo ${skipMessage}`);
+        }
+
         return this._getUploadCoverageCmd();
     }
 
     _getUploadCoverageCmd() {
         return Promise.reject('Not implemented');
+    }
+
+    /**
+     * Verify to run coverage plugin or not
+     * @method isCoverageEnabled
+     * @param   {Object}  clusterConfig  coverage plugin setting at cluster level.
+     * @param   {Object}  buildConfig.environment.COVERAGE_PLUGIN_ENABLED coverage plugin setting in each builds.
+     * @return {Boolean}
+     */
+    isCoverageEnabled(clusterConfig, buildConfig) {
+        if (buildConfig.environment === undefined ||
+            buildConfig.environment.COVERAGE_PLUGIN_ENABLED === undefined) {
+            return clusterConfig.enabled;
+        }
+
+        return buildConfig.environment.COVERAGE_PLUGIN_ENABLED;
     }
 }
 
