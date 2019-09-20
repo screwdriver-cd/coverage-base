@@ -53,7 +53,7 @@ class CoverageBase {
     getUploadCoverageCmd(config) {
         if (this.isCoverageEnabled(this.config, config.build) === 'false') {
             const skipMessage = 'Coverage feature is skipped. ' +
-                'Set COVERAGE_PLUGIN_ENABLED environment true, if you want to get coverages.';
+                'Set SD_COVERAGE_PLUGIN_ENABLED environment true, if you want to get coverages.';
 
             return Promise.resolve(`echo ${skipMessage}`);
         }
@@ -68,15 +68,17 @@ class CoverageBase {
     /**
      * Verify to run coverage plugin or not
      * @method isCoverageEnabled
-     * @param   {Object}  clusterConfig  default coverage plugin setting at cluster level.
-     * @param   {Object}  buildConfig.environment.COVERAGE_PLUGIN_ENABLED coverage plugin setting in each builds.
-     * @return {Boolean}
+     * @param   {Object}  clusterConfig    Default coverage plugin setting at cluster level.
+     * @param   {Object}  buildConfig      Configurations in each builds.
+     * @param   {String}  buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED
+     *                    Coverage plugin enable setting by user. It should be 'true' or 'false'.
+     * @return {String}   'true' or 'false'
      */
     isCoverageEnabled(clusterConfig, buildConfig) {
         // if user has the configuration, use it
         if (buildConfig.environment &&
-            buildConfig.environment.COVERAGE_PLUGIN_ENABLED) {
-            return buildConfig.environment.COVERAGE_PLUGIN_ENABLED;
+            buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED) {
+            return buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED;
         }
 
         // if not, use cluster wide default

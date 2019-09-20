@@ -74,7 +74,7 @@ describe('index test', () => {
             };
             const buildConfig = {
                 environment: {
-                    COVERAGE_PLUGIN_ENABLED: 'false'
+                    SD_COVERAGE_PLUGIN_ENABLED: 'false'
                 }
             };
 
@@ -102,7 +102,7 @@ describe('index test', () => {
             };
             const buildConfig = {
                 environment: {
-                    COVERAGE_PLUGIN_ENABLED: 'true'
+                    SD_COVERAGE_PLUGIN_ENABLED: 'true'
                 }
             };
 
