@@ -53,7 +53,7 @@ class CoverageBase {
     getUploadCoverageCmd(config) {
         if (this.isCoverageEnabled(this.config, config.build) === 'false') {
             const skipMessage = 'Coverage feature is skipped. ' +
-                'Set SD_COVERAGE_PLUGIN_ENABLED environment value true, ' +
+                'Set SD_COVERAGE_PLUGIN_ENABLED environment variable true, ' +
                 'if you want to get coverages.';
 
             return Promise.resolve(`echo ${skipMessage}`);
