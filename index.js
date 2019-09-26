@@ -46,14 +46,44 @@ class CoverageBase {
     /**
      * Get shell command to upload coverage to server
      * @method getUploadCoverageCmd
-     * @return {Promise}     Shell commands to upload coverage
+     * @param   {Object}  config
+     * @param   {String}  config.build   build configuration
+     * @return {Promise}  Shell commands to upload coverage
      */
-    getUploadCoverageCmd() {
+    getUploadCoverageCmd(config) {
+        if (this.isCoverageEnabled(this.config, config.build) === 'false') {
+            const skipMessage = 'Coverage feature is skipped. ' +
+                'Set SD_COVERAGE_PLUGIN_ENABLED environment variable true, ' +
+                'if you want to get coverages.';
+
+            return Promise.resolve(`echo ${skipMessage}`);
+        }
+
         return this._getUploadCoverageCmd();
     }
 
     _getUploadCoverageCmd() {
         return Promise.reject('Not implemented');
+    }
+
+    /**
+     * Verify to run coverage plugin or not
+     * @method isCoverageEnabled
+     * @param   {Object}  clusterConfig    Default coverage plugin setting at cluster level.
+     * @param   {Object}  buildConfig      Configurations in each builds.
+     * @param   {String}  buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED
+     *                    Coverage plugin enable setting by user. It should be 'true' or 'false'.
+     * @return {String}   'true' or 'false'
+     */
+    isCoverageEnabled(clusterConfig, buildConfig) {
+        // if user has the configuration, use it
+        if (buildConfig.environment &&
+            buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED) {
+            return buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED;
+        }
+
+        // if not, use cluster wide default
+        return clusterConfig.default;
     }
 }
 
