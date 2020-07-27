@@ -28,7 +28,7 @@ The `getAccessToken` function should resolve a Promise with an access token that
 | Parameter        | Type   |  Description |
 | :--------------- | :----- | :----------- |
 | config           | Object |              |
-| config.annotations | Object | Job annotations | 
+| config.annotations | Object | Job annotations |
 | config.jobId     | String | The unique ID for a job |
 | config.jobName   | String | The Screwdriver job name |
 | config.pipelineId | String | The unique ID for a pipeline |
