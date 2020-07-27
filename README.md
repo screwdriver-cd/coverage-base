@@ -36,6 +36,7 @@ The `getAccessToken` function should resolve a Promise with an access token that
 | config.prNum     | String | The pull request number |
 | config.startTime | String | The job start time |
 | config.endTime   | String | The job end time |
+| config.coverageProjectKey | String | Project key (can be directly passed in with just startTime and endTime) |
 
 ##### Expected Outcome
 The `getInfo` function should resolve a Promise with an object with metadata about the project coverage.
