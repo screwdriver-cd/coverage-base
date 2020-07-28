@@ -31,13 +31,16 @@ class CoverageBase {
      * Return coverage metadata, such as links to the project and coverage percentage
      * @method getInfo
      * @param   {Object}  config
-     * @param   {String}  [config.annotations]  Job annotations
-     * @param   {String}  config.jobId          Screwdriver job ID
-     * @param   {String}  [config.pipelineId]   Screwdriver pipeline ID (if enterprise is enabled)
-     * @param   {String}  [config.prNum]        Pull request number
-     * @param   {String}  config.startTime      Time the job started
-     * @param   {String}  config.endTime        Time the job ended
-     * @return  {Promise}                       An object with coverage metadata
+     * @param   {String}  [config.annotations]          Job annotations
+     * @param   {String}  config.jobId                  Screwdriver job ID
+     * @param   {String}  [config.jobName]              Screwdriver job name
+     * @param   {String}  [config.pipelineId]           Screwdriver pipeline ID (if enterprise is enabled)
+     * @param   {String}  [config.pipelineName]         Screwdriver pipeline name
+     * @param   {String}  [config.prNum]                Pull request number
+     * @param   {String}  config.startTime              Time the job started
+     * @param   {String}  config.endTime                Time the job ended
+     * @param   {String}  [config.coverageProjectKey]   Project key
+     * @return  {Promise}                               An object with coverage metadata
      */
     getInfo(config) {
         return this._getInfo(config);
