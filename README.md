@@ -16,7 +16,9 @@ This is an interface for uploading code coverage results from a Screwdriver buil
 ##### Required Parameters
 | Parameter        | Type  |  Description |
 | :--------------- | :---- | :----------- |
-| buildCredentials | Object | Information stored in the build JWT token |
+| config           | Object |             |
+| config.annotations | Object | Job annotations |
+| config.buildCredentials | Object | Information stored in the build JWT token |
 
 ##### Expected Outcome
 The `getAccessToken` function should resolve a Promise with an access token that build can use to talk to the code coverage server.
@@ -26,15 +28,28 @@ The `getAccessToken` function should resolve a Promise with an access token that
 | Parameter        | Type   |  Description |
 | :--------------- | :----- | :----------- |
 | config           | Object |              |
-| config.buildId   | String | The unique ID for a build |
+| config.annotations | Object | Job annotations |
 | config.jobId     | String | The unique ID for a job |
+| config.jobName   | String | The Screwdriver job name |
+| config.pipelineId | String | The unique ID for a pipeline |
+| config.pipelineName | String | The Screwdriver pipeline name |
+| config.prNum     | String | The pull request number |
 | config.startTime | String | The job start time |
 | config.endTime   | String | The job end time |
+| config.coverageProjectKey | String | Project key (can be directly passed in with just startTime and endTime) |
 
 ##### Expected Outcome
 The `getInfo` function should resolve a Promise with an object with metadata about the project coverage.
 
 ### getUploadCoverageCmd
+##### Required Parameters
+| Parameter        | Type   |  Description |
+| :--------------- | :----- | :----------- |
+| config           | Object |              |
+| config.build     | String | The build    |
+| config.job       | String | The job      |
+| config.pipeline  | String | The pipeline |
+
 ##### Expected Outcome
 The `getUploadCoverageCmd` function should resolve a Promise with a string of shell commands to upload code coverage results.
 

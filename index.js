@@ -14,11 +14,13 @@ class CoverageBase {
     /**
      * Return an access token that build can use to talk to coverage server
      * @method getAccessToken
-     * @param   {Object}  buildCredentials    Infomation stored in a build JWT
-     * @return  {Promise}                     An access token that build can use to talk to coverage server
+     * @param   {Object}  config
+     * @param   {Object}  [config.annotations]      Job annotations
+     * @param   {Object}  config.buildCredentials   Information stored in a build JWT
+     * @return  {Promise}                           An access token that builds can use to talk to coverage server
      */
-    getAccessToken(buildCredentials) {
-        return this._getAccessToken(buildCredentials);
+    getAccessToken(config) {
+        return this._getAccessToken(config);
     }
 
     _getAccessToken() {
@@ -29,11 +31,16 @@ class CoverageBase {
      * Return coverage metadata, such as links to the project and coverage percentage
      * @method getInfo
      * @param   {Object}  config
-     * @param   {String}  config.buildId    Screwdriver build ID
-     * @param   {String}  config.jobId      Screwdriver job ID
-     * @param   {String}  config.startTime  Time the job started
-     * @param   {String}  config.endTime    Time the job ended
-     * @return  {Promise}                   An object with coverage metadata
+     * @param   {String}  [config.annotations]          Job annotations
+     * @param   {String}  config.jobId                  Screwdriver job ID
+     * @param   {String}  [config.jobName]              Screwdriver job name
+     * @param   {String}  [config.pipelineId]           Screwdriver pipeline ID (if enterprise is enabled)
+     * @param   {String}  [config.pipelineName]         Screwdriver pipeline name
+     * @param   {String}  [config.prNum]                Pull request number
+     * @param   {String}  config.startTime              Time the job started
+     * @param   {String}  config.endTime                Time the job ended
+     * @param   {String}  [config.coverageProjectKey]   Project key
+     * @return  {Promise}                               An object with coverage metadata
      */
     getInfo(config) {
         return this._getInfo(config);
@@ -47,11 +54,16 @@ class CoverageBase {
      * Get shell command to upload coverage to server
      * @method getUploadCoverageCmd
      * @param   {Object}  config
-     * @param   {String}  config.build   build configuration
-     * @return {Promise}  Shell commands to upload coverage
+     * @param   {Object}  config.build          Build configuration
+     * @param   {Object}  config.job            Job configuration
+     * @param   {Object}  config.pipeline       Pipeline configuration
+     * @return  {Promise}  Shell commands to upload coverage
      */
     getUploadCoverageCmd(config) {
-        if (this.isCoverageEnabled(this.config, config.build) === 'false') {
+        const { build, job, pipeline } = config;
+        let annotations = {};
+
+        if (this.isCoverageEnabled(this.config, build) === 'false') {
             const skipMessage = 'Coverage feature is skipped. ' +
                 'Set SD_COVERAGE_PLUGIN_ENABLED environment variable true, ' +
                 'if you want to get coverages.';
@@ -59,7 +71,17 @@ class CoverageBase {
             return Promise.resolve(`echo ${skipMessage}`);
         }
 
-        return this._getUploadCoverageCmd();
+        if (job && job.permutations && job.permutations[0]) {
+            annotations = job.permutations[0].annotations;
+        }
+
+        return this._getUploadCoverageCmd({
+            annotations,
+            jobId: job.id,
+            pipelineId: pipeline.id,
+            jobName: job.name,
+            pipelineName: pipeline.name
+        });
     }
 
     _getUploadCoverageCmd() {
