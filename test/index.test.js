@@ -46,7 +46,7 @@ describe('index test', () => {
             job: {
                 id: 456,
                 name: 'main',
-                permutations: [{ 'screwdriver.cd/sonarScope': 'pipeline' }]
+                permutations: [{ annotations: { 'screwdriver.cd/sonarScope': 'pipeline' } }]
             },
             pipeline: { id: 123, name: 'd2lam/mytest' }
         };

@@ -1,5 +1,7 @@
 'use strict';
 
+const COVERAGE_SCOPE_ANNOTATION = 'screwdriver.cd/coverageScope';
+
 /* eslint-disable no-underscore-dangle */
 class CoverageBase {
     /** Constructor for Coverage plugin
@@ -61,7 +63,7 @@ class CoverageBase {
      */
     getUploadCoverageCmd(config) {
         const { build, job, pipeline } = config;
-        let annotations = {};
+        let scope = null;
 
         if (this.isCoverageEnabled(this.config, build) === 'false') {
             const skipMessage = 'Coverage feature is skipped. ' +
@@ -72,11 +74,11 @@ class CoverageBase {
         }
 
         if (job && job.permutations && job.permutations[0]) {
-            annotations = job.permutations[0].annotations;
+            scope = job.permutations[0].annotations[COVERAGE_SCOPE_ANNOTATION];
         }
 
         return this._getUploadCoverageCmd({
-            annotations,
+            scope,
             jobId: job.id,
             pipelineId: pipeline.id,
             jobName: job.name,

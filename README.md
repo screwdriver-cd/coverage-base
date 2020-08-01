@@ -17,8 +17,10 @@ This is an interface for uploading code coverage results from a Screwdriver buil
 | Parameter        | Type  |  Description |
 | :--------------- | :---- | :----------- |
 | config           | Object |             |
-| config.annotations | Object | Job annotations |
 | config.buildCredentials | Object | Information stored in the build JWT token |
+| config.projectKey | String | Project key (can be directly passed in with just startTime and endTime) |
+| config.scope | String | Coverage scope (pipeline or job) |
+| config.username | String | Project username |
 
 ##### Expected Outcome
 The `getAccessToken` function should resolve a Promise with an access token that build can use to talk to the code coverage server.
@@ -28,7 +30,6 @@ The `getAccessToken` function should resolve a Promise with an access token that
 | Parameter        | Type   |  Description |
 | :--------------- | :----- | :----------- |
 | config           | Object |              |
-| config.annotations | Object | Job annotations |
 | config.jobId     | String | The unique ID for a job |
 | config.jobName   | String | The Screwdriver job name |
 | config.pipelineId | String | The unique ID for a pipeline |
@@ -36,7 +37,9 @@ The `getAccessToken` function should resolve a Promise with an access token that
 | config.prNum     | String | The pull request number |
 | config.startTime | String | The job start time |
 | config.endTime   | String | The job end time |
-| config.coverageProjectKey | String | Project key (can be directly passed in with just startTime and endTime) |
+| config.projectKey | String | Project key (can be directly passed in with just startTime and endTime) |
+| config.prParentJobId | String | PR parent job ID |
+| config.scope | String | Coverage scope (pipeline or job) |
 
 ##### Expected Outcome
 The `getInfo` function should resolve a Promise with an object with metadata about the project coverage.
