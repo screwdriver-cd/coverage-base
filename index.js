@@ -1,7 +1,5 @@
 'use strict';
 
-const COVERAGE_SCOPE_ANNOTATION = 'screwdriver.cd/coverageScope';
-
 /* eslint-disable no-underscore-dangle */
 class CoverageBase {
     /** Constructor for Coverage plugin
