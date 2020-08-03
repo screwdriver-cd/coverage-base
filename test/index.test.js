@@ -42,13 +42,7 @@ describe('index test', () => {
 
     it('should catch an error for getUploadCoverageCmd', () => {
         const config = {
-            build: {},
-            job: {
-                id: 456,
-                name: 'main',
-                permutations: [{ 'screwdriver.cd/sonarScope': 'pipeline' }]
-            },
-            pipeline: { id: 123, name: 'd2lam/mytest' }
+            build: {}
         };
 
         instance.getUploadCoverageCmd(config)

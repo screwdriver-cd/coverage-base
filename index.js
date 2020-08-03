@@ -60,8 +60,7 @@ class CoverageBase {
      * @return  {Promise}  Shell commands to upload coverage
      */
     getUploadCoverageCmd(config) {
-        const { build, job, pipeline } = config;
-        let annotations = {};
+        const { build } = config;
 
         if (this.isCoverageEnabled(this.config, build) === 'false') {
             const skipMessage = 'Coverage feature is skipped. ' +
@@ -71,17 +70,7 @@ class CoverageBase {
             return Promise.resolve(`echo ${skipMessage}`);
         }
 
-        if (job && job.permutations && job.permutations[0]) {
-            annotations = job.permutations[0].annotations;
-        }
-
-        return this._getUploadCoverageCmd({
-            annotations,
-            jobId: job.id,
-            pipelineId: pipeline.id,
-            jobName: job.name,
-            pipelineName: pipeline.name
-        });
+        return this._getUploadCoverageCmd();
     }
 
     _getUploadCoverageCmd() {
