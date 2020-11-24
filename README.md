@@ -1,5 +1,5 @@
 # Coverage Base
-[![Version][npm-image]][npm-url] ![Downloads][downloads-image] [![Build Status][status-image]][status-url] [![Open Issues][issues-image]][issues-url] [![Dependency Status][daviddm-image]][daviddm-url] ![License][license-image]
+[![Version][npm-image]][npm-url] ![Downloads][downloads-image] [![Build Status][status-image]][status-url] [![Open Issues][issues-image]][issues-url] ![License][license-image]
 
 > Base class defining the interface for coverage upload implementations
 
@@ -80,9 +80,7 @@ Code licensed under the BSD 3-Clause license. See LICENSE file for terms.
 [npm-url]: https://npmjs.org/package/screwdriver-coverage-base
 [downloads-image]: https://img.shields.io/npm/dt/screwdriver-coverage-base.svg
 [license-image]: https://img.shields.io/npm/l/screwdriver-coverage-base.svg
-[issues-image]: https://img.shields.io/github/issues/screwdriver-cd/screwdriver-coverage-base.svg
-[issues-url]: https://github.com/screwdriver-cd/screwdriver-coverage-base/issues
+[issues-image]: https://img.shields.io/github/issues/screwdriver-cd/coverage-base.svg
+[issues-url]: https://github.com/screwdriver-cd/coverage-base/issues
 [status-image]: https://cd.screwdriver.cd/pipelines/705/badge
 [status-url]: https://cd.screwdriver.cd/pipelines/705
-[daviddm-image]: https://david-dm.org/screwdriver-cd/screwdriver-coverage-base.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/screwdriver-cd/screwdriver-coverage-base
