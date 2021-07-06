@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-underscore-dangle, prefer-promise-reject-errors */
 class CoverageBase {
     /** Constructor for Coverage plugin
      * @method Constructor
@@ -63,7 +63,8 @@ class CoverageBase {
         const { build } = config;
 
         if (this.isCoverageEnabled(this.config, build) === 'false') {
-            const skipMessage = 'Coverage feature is skipped. ' +
+            const skipMessage =
+                'Coverage feature is skipped. ' +
                 'Set SD_COVERAGE_PLUGIN_ENABLED environment variable true, ' +
                 'if you want to get coverages.';
 
@@ -88,8 +89,7 @@ class CoverageBase {
      */
     isCoverageEnabled(clusterConfig, buildConfig) {
         // if user has the configuration, use it
-        if (buildConfig.environment &&
-            buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED) {
+        if (buildConfig.environment && buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED) {
             return buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED;
         }
 
