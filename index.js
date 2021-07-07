@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-underscore-dangle, prefer-promise-reject-errors */
+/* eslint-disable no-underscore-dangle */
 class CoverageBase {
     /** Constructor for Coverage plugin
      * @method Constructor
@@ -24,7 +24,7 @@ class CoverageBase {
     }
 
     _getAccessToken() {
-        return Promise.reject('Not implemented');
+        return Promise.reject(new Error('Not implemented'));
     }
 
     /**
@@ -47,7 +47,7 @@ class CoverageBase {
     }
 
     _getInfo() {
-        return Promise.reject('Not implemented');
+        return Promise.reject(new Error('Not implemented'));
     }
 
     /**
@@ -75,7 +75,7 @@ class CoverageBase {
     }
 
     _getUploadCoverageCmd() {
-        return Promise.reject('Not implemented');
+        return Promise.reject(new Error('Not implemented'));
     }
 
     /**
