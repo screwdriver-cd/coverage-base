@@ -24,7 +24,7 @@ class CoverageBase {
     }
 
     _getAccessToken() {
-        return Promise.reject('Not implemented');
+        return Promise.reject(new Error('Not implemented'));
     }
 
     /**
@@ -47,7 +47,7 @@ class CoverageBase {
     }
 
     _getInfo() {
-        return Promise.reject('Not implemented');
+        return Promise.reject(new Error('Not implemented'));
     }
 
     /**
@@ -63,7 +63,8 @@ class CoverageBase {
         const { build } = config;
 
         if (this.isCoverageEnabled(this.config, build) === 'false') {
-            const skipMessage = 'Coverage feature is skipped. ' +
+            const skipMessage =
+                'Coverage feature is skipped. ' +
                 'Set SD_COVERAGE_PLUGIN_ENABLED environment variable true, ' +
                 'if you want to get coverages.';
 
@@ -74,7 +75,7 @@ class CoverageBase {
     }
 
     _getUploadCoverageCmd() {
-        return Promise.reject('Not implemented');
+        return Promise.reject(new Error('Not implemented'));
     }
 
     /**
@@ -88,8 +89,7 @@ class CoverageBase {
      */
     isCoverageEnabled(clusterConfig, buildConfig) {
         // if user has the configuration, use it
-        if (buildConfig.environment &&
-            buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED) {
+        if (buildConfig.environment && buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED) {
             return buildConfig.environment.SD_COVERAGE_PLUGIN_ENABLED;
         }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('chai').assert;
+const { assert } = require('chai');
 
 describe('index test', () => {
     let instance;
@@ -21,23 +21,27 @@ describe('index test', () => {
     });
 
     it('should catch an error for getAccessToken', () => {
-        instance.getAccessToken({})
-            .then(() => {
+        instance.getAccessToken({}).then(
+            () => {
                 throw new Error('Should not get here');
-            }, (err) => {
+            },
+            err => {
                 assert.isOk(err, 'Error should be returned');
                 assert.equal(err.message, 'Not implemented');
-            });
+            }
+        );
     });
 
     it('should catch an error for getInfo', () => {
-        instance.getInfo({})
-            .then(() => {
+        instance.getInfo({}).then(
+            () => {
                 throw new Error('Should not get here');
-            }, (err) => {
+            },
+            err => {
                 assert.isOk(err, 'Error should be returned');
                 assert.equal(err.message, 'Not implemented');
-            });
+            }
+        );
     });
 
     it('should catch an error for getUploadCoverageCmd', () => {
@@ -45,13 +49,15 @@ describe('index test', () => {
             build: {}
         };
 
-        instance.getUploadCoverageCmd(config)
-            .then(() => {
+        instance.getUploadCoverageCmd(config).then(
+            () => {
                 throw new Error('Should not get here');
-            }, (err) => {
+            },
+            err => {
                 assert.isOk(err, 'Error should be returned');
                 assert.equal(err.message, 'Not implemented');
-            });
+            }
+        );
     });
 
     describe('isCoverageEnabled test', () => {
@@ -63,9 +69,7 @@ describe('index test', () => {
                 environment: {}
             };
 
-            assert.equal('true',
-                instance.isCoverageEnabled(clusterConfig, buildConfig)
-            );
+            assert.equal('true', instance.isCoverageEnabled(clusterConfig, buildConfig));
         });
 
         it('should return false if enabled at cluster level, and disabled at buildConfig.', () => {
@@ -78,9 +82,7 @@ describe('index test', () => {
                 }
             };
 
-            assert.equal('false',
-                instance.isCoverageEnabled(clusterConfig, buildConfig)
-            );
+            assert.equal('false', instance.isCoverageEnabled(clusterConfig, buildConfig));
         });
 
         it('should return false if disabled at cluster level, and buildConfig not defined.', () => {
@@ -91,9 +93,7 @@ describe('index test', () => {
                 environment: {}
             };
 
-            assert.equal('false',
-                instance.isCoverageEnabled(clusterConfig, buildConfig)
-            );
+            assert.equal('false', instance.isCoverageEnabled(clusterConfig, buildConfig));
         });
 
         it('should return true if disabled at cluster level, and enabled at build config.', () => {
@@ -106,9 +106,7 @@ describe('index test', () => {
                 }
             };
 
-            assert.equal('true',
-                instance.isCoverageEnabled(clusterConfig, buildConfig)
-            );
+            assert.equal('true', instance.isCoverageEnabled(clusterConfig, buildConfig));
         });
     });
 });
