@@ -1,16 +1,15 @@
 {
   "name": "screwdriver-coverage-base",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Base class defining the interface for coverage upload implementations",
   "main": "index.js",
   "scripts": {
     "pretest": "eslint .",
-    "test": "nyc --report-dir ./artifacts/coverage --reporter=lcov mocha --reporter mocha-multi-reporters --reporter-options configFile=./mocha.config.json --recursive --timeout 4000 --retries 1 --exit --allow-uncaught true --color true",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "nyc --report-dir ./artifacts/coverage --reporter=lcov mocha --reporter mocha-multi-reporters --reporter-options configFile=./mocha.config.json --recursive --timeout 4000 --retries 1 --exit --allow-uncaught true --color true"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:screwdriver-cd/coverage-base.git"
+    "url": "git+https://github.com/screwdriver-cd/coverage-base.git"
   },
   "homepage": "https://github.com/screwdriver-cd/coverage-base",
   "bugs": "https://github.com/screwdriver-cd/screwdriver/issues",
@@ -30,19 +29,16 @@
     "Tiffany Kyi <tiffanykyi@gmail.com>"
   ],
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^7.5.0",
-    "eslint-config-screwdriver": "^5.0.1",
-    "mocha": "^8.2.1",
+    "chai": "^4.3.7",
+    "eslint": "^8.28.0",
+    "eslint-config-screwdriver": "^7.0.0",
+    "mocha": "^10.1.0",
     "mocha-multi-reporters": "^1.5.1",
     "mocha-sonarqube-reporter": "^1.0.2",
-    "nyc": "^15.0.0"
+    "nyc": "^15.1.0"
   },
   "dependencies": {},
   "release": {
-    "debug": false,
-    "verifyConditions": {
-      "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
-    }
+    "debug": false
   }
 }
